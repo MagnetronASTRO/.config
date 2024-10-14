@@ -1,3 +1,8 @@
+# ignore all directories and files
+*/
+.DS_Store
+
+# nvim ignore
 nvim/tags
 nvim/test.sh
 nvim/.luarc.json
@@ -5,3 +10,7 @@ nvim/nvim
 
 nvim/spell/
 nvim/lazy-lock.json
+
+# don't ignore those
+!nvim/
+!tmux/
