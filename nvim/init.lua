@@ -19,7 +19,7 @@ Kickstart Guide:
 
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 --]]
-vim.opt.relativenumber
+vim.opt.relativenumber = true
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
