@@ -1,19 +1,26 @@
-# ignore all directories and files
-*/
-.DS_Store
+# Ignore everything
+/*
 
-# nvim ignore
+# Unignore .gitignore file
+!/.gitignore
+
+# Unignore nvim and tmux directories
+!/nvim/
+!/tmux/
+
+# Unignore all files within nvim and tmux
+!/nvim/**
+!/tmux/**
+
+# Ignore specific files within nvim
 nvim/tags
 nvim/test.sh
 nvim/.luarc.json
-nvim/nvim
-
 nvim/spell/
 nvim/lazy-lock.json
 
-# don't ignore those
-!nvim/
-!tmux/
+# Ignore macOS system files
+.DS_Store
 
-# log files
+# Ignore log files
 *.log
