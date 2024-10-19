@@ -7,10 +7,12 @@
 # Unignore nvim and tmux directories
 !/nvim/
 !/tmux/
+!/mc/
 
 # Unignore all files within nvim and tmux
 !/nvim/**
 !/tmux/**
+!/mc/**
 
 # Ignore specific files within nvim
 nvim/tags
