@@ -98,6 +98,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.tabstop = 4
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -130,6 +132,28 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Function to toggle netrw on the left side
+local function toggle_netrw_left()
+  -- Check if netrw is already open
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+    if bufname:match 'NetrwTreeListing' or bufname:match '^netrw' then
+      -- Close netrw window
+      vim.api.nvim_win_close(win, true)
+      return
+    end
+  end
+  -- Open netrw on the left
+  -- vim.cmd 'leftabove vertical 30split'
+  vim.cmd 'silent Lexplore %:p:h'
+end
+
+-- Map the function to a key combination
+vim.keymap.set('n', '<leader>dd', toggle_netrw_left, { silent = true, desc = 'Toggle netrw on the left' })
+
+-- Map <leader>da to toggle netrw in the current working directory
+vim.keymap.set('n', '<leader>da', ':Lex<CR>', { silent = true, desc = 'Toggle netrw in current working directory' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -342,12 +366,14 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Search Git Files' })
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
