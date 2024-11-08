@@ -99,6 +99,19 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
+-- Enable autoread
+vim.opt.autoread = true
+
+-- Autocommand to reload files changed outside of Neovim
+vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
+  pattern = { '*' },
+  callback = function()
+    vim.notify('File changed on disk. Buffer reloaded.', vim.log.levels.INFO)
+    vim.cmd 'edit!' -- Reload the file
+  end,
+})
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -352,7 +365,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            find_command = { 'fd', '--type', 'f', '--no-ignore' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -366,7 +383,7 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Search Git Files' })
+      vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Search Git Files' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 
@@ -573,7 +590,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        gopls = {},
+        -- gopls = {},
         pyright = {},
         -- phpactor = {},
         intelephense = {},
