@@ -17,7 +17,7 @@ return {
         'eslint_d', -- ts/js linter
         'shfmt', -- Shell formatter
         'checkmake', -- linter for Makefiles
-        'ruff', -- Python linter and formatter
+        -- 'ruff', -- Python linter and formatter
       },
       automatic_installation = true,
     }
@@ -27,9 +27,8 @@ return {
       formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
       formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
-      formatting.terraform_fmt,
-      require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
-      require 'none-ls.formatting.ruff_format',
+      -- require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
+      -- require 'none-ls.formatting.ruff_format',
     }
 
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

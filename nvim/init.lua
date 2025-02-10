@@ -30,4 +30,5 @@ require('lazy').setup {
   require 'plugins.snacks',
   require 'plugins.noice',
   require 'plugins.dadbod',
+  require 'plugins.harpoon',
 }

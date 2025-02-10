@@ -6,7 +6,8 @@ return { -- Highlight, edit, and navigate code
   opts = {
     ensure_installed = {
       'lua',
-	  'php',
+      -- 'blade',
+      'php',
       'python',
       'javascript',
       'typescript',
@@ -33,6 +34,25 @@ return { -- Highlight, edit, and navigate code
       'css',
       'html',
     },
+    config = function()
+      vim.filetype.add {
+        pattern = {
+          ['.*%.blade%.php'] = 'php',
+        },
+      }
+    end,
+    --
+    --   require('nvim-treesitter.configs').setup(opts)
+    --   local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+    --   parser_config.blade = {
+    --     install_info = {
+    --       url = 'https://github.com/EmranMR/tree-sitter-blade',
+    --       files = { 'src/parser.c' },
+    --       branch = 'main',
+    --     },
+    --     filetype = 'blade',
+    --   }
+    -- end,
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
