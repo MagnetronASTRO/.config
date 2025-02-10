@@ -31,4 +31,6 @@ require('lazy').setup {
   require 'plugins.noice',
   require 'plugins.dadbod',
   require 'plugins.harpoon',
+  require 'plugins.lazydocker',
+  require 'plugins.avante',
 }
