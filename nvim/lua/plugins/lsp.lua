@@ -208,7 +208,7 @@ return {
             },
             diagnostics = { disable = { 'missing-fields' } },
             format = {
-              enable = false,
+              enable = true,
             },
           },
         },
