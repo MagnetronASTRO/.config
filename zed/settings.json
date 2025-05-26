@@ -1,0 +1,35 @@
+// zed settings
+//
+// for information on how to configure zed, see the zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// to see all of zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `zed` application menu.
+{
+  "icon_theme": "Catppuccin Mocha",
+  "agent": {
+    "default_profile": "ask",
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gemini-2.0-flash-001"
+    },
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gemini-2.5-pro"
+    },
+    "version": "2"
+  },
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "theme": "Catppuccin Mocha",
+  "format_on_save": "off",
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "vim_leader": "<Space>", // From vim.leader
+  "use_system_clipboard": "on", // From vim.useSystemClipboard
+  "vim_highlight_yank": true // From vim.highlightedyank.enable
+}

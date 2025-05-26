@@ -42,7 +42,7 @@ return {
             insert_mode = true,
           },
           -- required for Windows users
-          use_absolute_path = true,
+          -- use_absolute_path = true,
         },
       },
     },

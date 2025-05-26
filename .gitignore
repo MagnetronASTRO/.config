@@ -8,6 +8,10 @@
 !/nvim/
 !/tmux/
 !/mc/
+!/zed/
+zed/*
+!/zed/settings.json
+!/zed/keymap.json
 
 # Unignore all files within nvim and tmux
 !/nvim/**
