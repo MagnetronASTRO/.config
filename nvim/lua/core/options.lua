@@ -39,7 +39,13 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.softtabstop = 4
 vim.opt.autoread = true
+
+-- for AVANTE
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 
 vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
   pattern = { '*' },

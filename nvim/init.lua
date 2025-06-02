@@ -20,7 +20,8 @@ require('lazy').setup {
   require 'plugins.treesitter',
   require 'plugins.telescope',
   require 'plugins.lsp',
-  require 'plugins.autocompletion',
+  require 'plugins.conform',
+  -- require 'plugins.autocompletion',
   require 'plugins.none-ls',
   require 'plugins.gitsigns',
   require 'plugins.alpha',
@@ -33,4 +34,5 @@ require('lazy').setup {
   require 'plugins.harpoon',
   require 'plugins.lazydocker',
   require 'plugins.avante',
+  require 'plugins.completion',
 }

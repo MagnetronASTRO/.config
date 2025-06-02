@@ -4,20 +4,47 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-    -- add any opts here
-    -- for example
     provider = 'openai',
     openai = {
-      endpoint = 'https://api.openai.com/v1',
-      model = 'o3-mini-high', -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- timeout in milliseconds
-      temperature = 0, -- adjust if needed
-      max_tokens = 4096,
+      endpoint = '',
+
+      model = 'unsloth/Devstral-Small-2505-GGUF',
+      timeout = 300000, -- timeout in milliseconds, inherited by vendors
+      temperature = 0.15, -- default temperature, inherited by vendors
+      max_tokens = 131072, -- default max_tokens, inherited by vendors
+    },
+
+    -- vendors = {
+    --   openai_qwen_32b = {
+    --     __inherited_from = 'openai',
+    --     model = 'qwen3-32b-128k',
+    --     -- temperature = 0.7,
+    --   },
+    --   openai_devstral_small_q4_K_XL_UD = {
+    --     __inherited_from = 'openai',
+    --     model = 'unsloth/Devstral-Small-2505-GGUF',
+    --     temperature = 0.15,
+    --     min_p = 0.01,
+    --   },
+    -- },
+    rag_service = {
+      enabled = true, -- Enable the RAG service
+      -- host_mount determines which local files the RAG service (running in Docker) can access.
+      -- os.getenv("HOME") mounts your home directory (read-only).
+      -- Adjust if your projects are elsewhere or if you want to limit/expand access.
+      -- For example, to mount the whole filesystem (use with caution): host_mount = "/",
+      host_mount = os.getenv 'HOME' .. '/.config',
+      provider = 'openai', -- This is correct for LM Studio's OpenAI-compatible API
+      llm_model = 'unsloth/Devstral-Small-2505-GGUF', -- Replace with the specific model name from your LM Studio
+      embed_model = 'nomic-ai/nomic-embed-text-v2-moe-GGUF', -- *** ACTION REQUIRED: Verify and update this model name ***
+      endpoint = '',
+    },
+    web_search_engine = {
+      provider = 'google', -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+      proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
     },
   },
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make',
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     'stevearc/dressing.nvim',
     'nvim-lua/plenary.nvim',
@@ -41,8 +68,6 @@ return {
           drag_and_drop = {
             insert_mode = true,
           },
-          -- required for Windows users
-          -- use_absolute_path = true,
         },
       },
     },
