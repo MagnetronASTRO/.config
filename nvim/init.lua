@@ -35,4 +35,5 @@ require('lazy').setup {
   require 'plugins.lazydocker',
   require 'plugins.avante',
   require 'plugins.completion',
+  require 'plugins.autosession',
 }

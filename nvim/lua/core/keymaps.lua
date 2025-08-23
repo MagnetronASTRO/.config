@@ -26,7 +26,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 
 -- save file without auto-formatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
+vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', { desc = 'Save file without auto-formatting' })
 
 -- quit file
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
@@ -38,7 +38,7 @@ vim.keymap.set('n', 'x', '"_x', opts)
 vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
 vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
 
--- Find and center
+-- Find and centem
 vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
