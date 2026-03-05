@@ -36,4 +36,5 @@ require('lazy').setup {
   require 'plugins.avante',
   require 'plugins.completion',
   require 'plugins.autosession',
+  require 'plugins.chrisbra',
 }
